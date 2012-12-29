@@ -27,6 +27,17 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    // フォトフレームっぽいものが簡単に作れそうなので作ってみる
+    UIView* photoView = [[UIView alloc] init];
+    photoView.backgroundColor = [UIColor redColor];
+    photoView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:photoView];
+
+    NSNumber* padding = @20;
+    NSDictionary* binding = NSDictionaryOfVariableBindings(photoView);
+    NSDictionary* metrics = NSDictionaryOfVariableBindings(padding);
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-padding-[photoView]-padding-|" options:0 metrics:metrics views:binding]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-padding-[photoView]-padding-|" options:0 metrics:metrics views:binding]];
 }
 
 - (void)didReceiveMemoryWarning
